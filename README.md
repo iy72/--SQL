@@ -206,12 +206,25 @@
 ## 十一、项目文件结构
 ```text
 sql/
-├── 01_create_tables.sql
-├── 02_insert_data.sql
-├── 03_build_agg_profile.sql
-├── 04_risk_segmentation.sql
-├── 05_six_core_diagrams.sql
+├── 00_data_quality_check.sql   ← 数据质量检查与预处理（建表、插入数据后执行）
+├── 01_create_tables.sql        ← 建库建表
+├── 02_insert_data.sql          ← 插入示例数据（100 个客户）
+├── 03_build_agg_profile.sql    ← 构建客户风险汇总宽表
+├── 04_risk_segmentation.sql    ← 风险评分与分层
+├── 05_six_core_diagrams.sql    ← 六张核心图表出数 SQL
 
 outputs/
-├── tables/
-└── charts/
+├── tables/                     ← 各查询结果 CSV 导出文件
+│   └── README.md
+└── charts/                     ← 可视化图表输出文件
+    └── README.md
+```
+
+### 推荐执行顺序
+
+1. `01_create_tables.sql` — 建库建表  
+2. `02_insert_data.sql` — 插入示例数据  
+3. `00_data_quality_check.sql` — 数据质量检查（可在数据插入后随时执行）  
+4. `03_build_agg_profile.sql` — 构建汇总宽表  
+5. `04_risk_segmentation.sql` — 风险评分与分层  
+6. `05_six_core_diagrams.sql` — 生成六张核心图表数据
